@@ -6,18 +6,17 @@
 <title>Energia em Jaraguá — Simulador Interativo</title>
 <style>
   :root {
-    /* Cores baseadas na bandeira de Jaraguá do Sul (Verde, Vermelho, Branco e Amarelo) */
-    --bg: #0b1a15;        /* Verde muito escuro para o fundo principal */
-    --bg2: #11261f;       /* Verde escuro para o cabeçalho/nav */
-    --bg3: #1a382e;       /* Verde intermediário para cards/pílulas */
-    --border: #265243;    /* Bordas esverdeadas */
-    --accent: #ffd500;    /* Amarelo do brasão para destaque */
-    --accent2: #ffffff;   /* Branco da cruz da bandeira */
-    --green: #009B3A;     /* Verde original da bandeira */
-    --red: #d32f2f;       /* Vermelho original da bandeira */
-    --text: #e8eceb;      /* Texto claro quase branco */
-    --muted: #8caba1;     /* Texto secundário (verde acinzentado) */
-    --card: #142e26;      /* Fundo dos painéis de simulação */
+    --bg: #0d0f14;
+    --bg2: #13161e;
+    --bg3: #1a1e28;
+    --border: #2a2f3e;
+    --accent: #f5a623;
+    --accent2: #4fc3f7;
+    --green: #69d98c;
+    --red: #ef5350;
+    --text: #e8eaf0;
+    --muted: #7a8099;
+    --card: #161b26;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -28,7 +27,6 @@
   }
 
   /* ── HEADER ── */
- 
   header {
     background: var(--bg2);
     border-bottom: 1px solid var(--border);
@@ -37,18 +35,16 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    /* As propriedades position, top e z-index foram removidas daqui */
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
-  
   .header-left { display: flex; align-items: center; gap: 16px; }
   .sesi-logo {
     height: 48px;
     border-radius: 6px;
     background: #fff;
     padding: 4px 8px;
-    object-fit: contain;
-    width: 180px;  
-    height: auto;
   }
   .header-title h1 {
     font-size: 1.15rem;
@@ -78,8 +74,7 @@
   .hero {
     padding: 52px 32px 40px;
     text-align: center;
-    /* Gradiente sutil misturando o verde e o vermelho da bandeira */
-    background: linear-gradient(135deg, var(--bg2) 0%, #2a1111 100%);
+    background: linear-gradient(180deg, #161b28 0%, var(--bg) 100%);
     border-bottom: 1px solid var(--border);
   }
   .hero-eyebrow {
@@ -103,7 +98,6 @@
     margin: 0 auto;
     line-height: 1.7;
     font-size: 0.95rem;
-    text-align: justify; /* Propriedade adicionada para justificar o texto */
   }
 
   /* ── TIMELINE NAV ── */
@@ -132,53 +126,6 @@
   }
   .tnav-btn:hover { color: var(--text); }
   .tnav-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-  /* ── TIMELINE NAV (GRID CARDS) ── */
-  .timeline-nav {
-    display: grid;
-    /* Cria colunas flexíveis que se ajustam ao tamanho da tela */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 32px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border);
-    max-width: 1200px;
-    margin: 0 auto; /* Centraliza o container inteiro */
-  }
-  
-  .tnav-btn {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px; /* Bordas arredondadas de card */
-    padding: 24px 16px; /* Deixa o botão mais alto e largo */
-    color: var(--muted);
-    cursor: pointer;
-    font-size: 0.95rem; /* Fonte maior */
-    font-weight: 600;
-    text-align: center;
-    transition: all 0.3s ease; /* Suaviza as animações de cor e movimento */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: normal; /* Permite que o texto quebre de linha se necessário */
-  }
-  
-  /* Efeito quando passa o mouse por cima */
-  .tnav-btn:hover {
-    background: var(--bg3);
-    color: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-4px); /* Faz o card "flutuar" para cima */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Estilo do capítulo que está selecionado */
-  .tnav-btn.active {
-    background: var(--accent);
-    color: var(--bg); /* Texto escuro para dar contraste com o fundo amarelo */
-    border-color: var(--accent);
-    font-weight: 800;
-    box-shadow: 0 4px 12px rgba(255, 213, 0, 0.2);
-  }
 
   /* ── CHAPTERS ── */
   .chapter {
@@ -198,8 +145,8 @@
   .chapter-num {
     width: 48px; height: 48px;
     border-radius: 50%;
-    background: var(--red); /* Vermelho da bandeira */
-    color: #fff;
+    background: var(--accent);
+    color: #000;
     font-size: 1.2rem;
     font-weight: 800;
     display: flex; align-items: center; justify-content: center;
@@ -238,7 +185,7 @@
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 10px;
     font-size: 0.8rem; font-weight: 600;
-    color: var(--text); text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
   }
   .sim-dot {
     width: 8px; height: 8px; border-radius: 50%;
@@ -268,7 +215,7 @@
     width: 18px; height: 18px; border-radius: 50%;
     background: var(--accent);
     cursor: pointer;
-    box-shadow: 0 0 8px rgba(255, 213, 0, 0.5); /* Sombra amarela */
+    box-shadow: 0 0 8px rgba(245,166,35,.5);
   }
   .val-display {
     min-width: 70px; text-align: right;
@@ -278,10 +225,9 @@
   /* ── CANVAS ── */
   canvas {
     width: 100%; border-radius: 8px;
-    background: var(--bg);
+    background: #0a0c12;
     display: block;
     margin-bottom: 16px;
-    border: 1px solid var(--border);
   }
 
   /* ── FORMULA PILL ── */
@@ -297,14 +243,14 @@
   .connection-box {
     margin-top: 22px;
     padding: 16px 20px;
-    background: rgba(255, 213, 0, 0.05); /* Fundo amarelado muito sutil */
-    border: 1px solid rgba(255, 213, 0, 0.2);
+    background: rgba(79,195,247,.07);
+    border: 1px solid rgba(79,195,247,.25);
     border-radius: 8px;
     font-size: 0.85rem; line-height: 1.7; color: var(--text);
   }
   .connection-box .conn-label {
     font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--accent); font-weight: 700; margin-bottom: 6px;
+    color: var(--accent2); font-weight: 700; margin-bottom: 6px;
   }
 
   /* ── CHAPTER 1 specific ── */
@@ -357,11 +303,10 @@
 
 <header>
   <div class="header-left">
-    <img class="sesi-logo" src="logo.png" >
+    <img class="sesi-logo" src="data:image/png;base64,LOGO_PLACEHOLDER" alt="Escola SESI">
     <div class="header-title">
-      <h1>Energia em Jaraguá do Sul</h1>
-      <p>Simulador Interativo de Física em comemoração aos 150 anos da cidade </p>
-      <p>por Laura Mafra, Natalia Cesconetto e Miguel Yudi.</p>
+      <h1>Energia em Jaraguá</h1>
+      <p>Simulador Interativo de Física</p>
     </div>
   </div>
   <div class="header-badges">
@@ -385,6 +330,7 @@
   <button class="tnav-btn" onclick="showChapter(4)">⑤ Hoje — Cidade Conectada</button>
 </nav>
 
+<!-- ════════════════════════════════ CAP 1 ════════════════════════════════ -->
 <section class="chapter active" id="ch0">
   <div class="chapter-header">
     <div class="chapter-num">1</div>
@@ -422,6 +368,7 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════ CAP 2 ════════════════════════════════ -->
 <section class="chapter" id="ch1">
   <div class="chapter-header">
     <div class="chapter-num">2</div>
@@ -460,6 +407,7 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════ CAP 3 ════════════════════════════════ -->
 <section class="chapter" id="ch2">
   <div class="chapter-header">
     <div class="chapter-num">3</div>
@@ -506,6 +454,7 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════ CAP 4 ════════════════════════════════ -->
 <section class="chapter" id="ch3">
   <div class="chapter-header">
     <div class="chapter-num">4</div>
@@ -559,6 +508,7 @@
   </div>
 </section>
 
+<!-- ════════════════════════════════ CAP 5 ════════════════════════════════ -->
 <section class="chapter" id="ch4">
   <div class="chapter-header">
     <div class="chapter-num">5</div>
@@ -584,10 +534,10 @@
       </div>
       <canvas id="antennaCanvas" height="280" onclick="placeAntenna(event)"></canvas>
       <div class="signal-legend">
-        <div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Sinal forte</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div>Sinal médio</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>Zona de sombra</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--accent2)"></div>Antena</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#69d98c"></div>Sinal forte</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#f5a623"></div>Sinal médio</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#ef5350"></div>Zona de sombra</div>
+        <div class="leg-item"><div class="leg-dot" style="background:#4fc3f7"></div>Antena</div>
       </div>
       <div class="connection-box">
         <div class="conn-label">Conexão Atual</div>
@@ -614,9 +564,6 @@ function showChapter(i) {
   if(i===4) drawAntenna();
 }
 
-// Cor de fundo padronizada para os canvas baseada no novo CSS var(--bg)
-const canvasBg = '#0b1a15'; 
-
 // ══════════════════════════════════════════════════
 //  CAP 1 — FARADAY GENERATOR
 // ══════════════════════════════════════════════════
@@ -641,7 +588,7 @@ function drawFaraday() {
   const rpm = +document.getElementById('rpm1').value;
   const speed = rpm / 3000;
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = canvasBg;
+  ctx.fillStyle = '#0a0c12';
   ctx.fillRect(0,0,W,H);
 
   // Draw coil
@@ -650,12 +597,12 @@ function drawFaraday() {
   ctx.save();
   ctx.translate(cx, cy);
   ctx.rotate(angle);
-  ctx.strokeStyle = '#ffd500'; /* Amarelo bandeira */
+  ctx.strokeStyle = '#f5a623';
   ctx.lineWidth = 3;
   ctx.beginPath();
   ctx.ellipse(0, 0, 40, 18, 0, 0, Math.PI*2);
   ctx.stroke();
-  ctx.strokeStyle = '#ffffff'; /* Branco bandeira */
+  ctx.strokeStyle = '#4fc3f7';
   ctx.lineWidth = 2;
   for(let i=-1;i<=1;i+=2){
     ctx.beginPath();
@@ -668,7 +615,7 @@ function drawFaraday() {
   // Field lines
   for(let y = H*0.2; y < H*0.85; y += 22) {
     const alpha = 0.15 + speed * 0.4;
-    ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+    ctx.strokeStyle = `rgba(79,195,247,${alpha})`;
     ctx.lineWidth = 1;
     ctx.setLineDash([4,6]);
     ctx.beginPath();
@@ -678,7 +625,7 @@ function drawFaraday() {
     ctx.setLineDash([]);
     if(speed > 0.1) {
       const ax = cx + 60;
-      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fillStyle = `rgba(79,195,247,${alpha})`;
       ctx.beginPath();
       ctx.moveTo(ax, y); ctx.lineTo(ax-6, y-4); ctx.lineTo(ax-6, y+4);
       ctx.fill();
@@ -687,7 +634,7 @@ function drawFaraday() {
 
   // Wire + lamp
   const lx = W * 0.78, ly = H * 0.5;
-  ctx.strokeStyle = '#8caba1';
+  ctx.strokeStyle = '#555';
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.moveTo(cx+58, cy); ctx.lineTo(lx-22, cy-40);
@@ -700,7 +647,7 @@ function drawFaraday() {
   const grd = ctx.createRadialGradient(lx,ly,0,lx,ly,r*2);
   if(brightness > 0.01) {
     grd.addColorStop(0, `rgba(255,240,140,${brightness})`);
-    grd.addColorStop(0.4, `rgba(255,213,0,${brightness*0.7})`);
+    grd.addColorStop(0.4, `rgba(255,200,50,${brightness*0.7})`);
     grd.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = grd;
     ctx.beginPath();
@@ -715,7 +662,7 @@ function drawFaraday() {
   ctx.fill(); ctx.stroke();
 
   // Labels
-  ctx.fillStyle = '#8caba1';
+  ctx.fillStyle = '#7a8099';
   ctx.font = '11px Segoe UI';
   ctx.fillText('Bobina', cx-18, H-8);
   ctx.fillText('Lâmpada', lx-28, H-8);
@@ -744,13 +691,13 @@ function draw3phase() {
   const W = canvas.width, H = canvas.height;
   const f = +document.getElementById('freq2').value;
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = canvasBg;
+  ctx.fillStyle = '#0a0c12';
   ctx.fillRect(0,0,W,H);
 
   const graphH = H * 0.42;
   const graphY = 14;
   const graphW = W - 40;
-  const colors = ['#d32f2f','#009c7b','#ffffff']; /* Cores da bandeira */
+  const colors = ['#ef5350','#69d98c','#4fc3f7'];
   const labels = ['Fase A','Fase B','Fase C'];
   const speed = f / 60 * 0.04;
 
@@ -772,7 +719,7 @@ function draw3phase() {
 
   // Rotating field vector circle
   const cx2 = W/2, cy2 = H*0.74, R = 52;
-  ctx.strokeStyle = '#265243';
+  ctx.strokeStyle = '#2a2f3e';
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.arc(cx2, cy2, R, 0, Math.PI*2);
@@ -799,19 +746,19 @@ function draw3phase() {
   const mag = Math.sqrt(fx*fx+fy*fy);
   if(mag>0.01) {
     const vx = (fx/mag)*R*0.85, vy = (fy/mag)*R*0.85;
-    ctx.strokeStyle = '#ffd500';
+    ctx.strokeStyle = '#f5a623';
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(cx2,cy2);
     ctx.lineTo(cx2+vx, cy2+vy);
     ctx.stroke();
-    ctx.fillStyle = '#ffd500';
+    ctx.fillStyle = '#f5a623';
     ctx.beginPath();
     ctx.arc(cx2+vx, cy2+vy, 5, 0, Math.PI*2);
     ctx.fill();
   }
 
-  ctx.fillStyle = '#8caba1';
+  ctx.fillStyle = '#7a8099';
   ctx.font = '11px Segoe UI';
   ctx.textAlign = 'center';
   ctx.fillText('Campo Girante Resultante', cx2, cy2+R+16);
@@ -851,13 +798,13 @@ function drawMotor() {
   const n = 120*freq/poles;
   const speed = n / 3600 * 0.06;
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = canvasBg;
+  ctx.fillStyle = '#0a0c12';
   ctx.fillRect(0,0,W,H);
 
   const cx = W/2, cy = H/2, R = Math.min(W,H)*0.34;
 
   // Stator
-  ctx.strokeStyle = '#265243';
+  ctx.strokeStyle = '#2a2f3e';
   ctx.lineWidth = 12;
   ctx.beginPath();
   ctx.arc(cx, cy, R+6, 0, Math.PI*2);
@@ -867,7 +814,7 @@ function drawMotor() {
   for(let i=0; i<poles; i++) {
     const a = (i/poles)*Math.PI*2 + t3*0.001;
     const r1 = R-4, r2 = R+4;
-    const col = i%2===0 ? '#d32f2f' : '#ffffff';
+    const col = i%2===0 ? '#ef5350' : '#4fc3f7';
     ctx.strokeStyle = col;
     ctx.lineWidth = 8;
     ctx.beginPath();
@@ -881,23 +828,23 @@ function drawMotor() {
   ctx.rotate(t3 * speed);
   for(let i=0; i<8; i++) {
     const a = (i/8)*Math.PI*2;
-    ctx.strokeStyle = `rgba(255,213,0,${0.4+0.5*(i%2)})`;
+    ctx.strokeStyle = `rgba(245,166,35,${0.4+0.5*(i%2)})`;
     ctx.lineWidth = 3;
     ctx.beginPath();
     ctx.moveTo(0,0);
     ctx.lineTo(Math.cos(a)*(R-22), Math.sin(a)*(R-22));
     ctx.stroke();
   }
-  ctx.strokeStyle = '#ffd500';
+  ctx.strokeStyle = '#f5a623';
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(0,0,R-22,0,Math.PI*2);
   ctx.stroke();
-  ctx.fillStyle = '#1a382e';
+  ctx.fillStyle = '#1a1e28';
   ctx.beginPath();
   ctx.arc(0,0,12,0,Math.PI*2);
   ctx.fill();
-  ctx.strokeStyle = '#ffd500';
+  ctx.strokeStyle = '#f5a623';
   ctx.lineWidth = 2;
   ctx.beginPath();
   ctx.arc(0,0,12,0,Math.PI*2);
@@ -905,12 +852,12 @@ function drawMotor() {
   ctx.restore();
 
   // RPM label
-  ctx.fillStyle = '#ffd500';
+  ctx.fillStyle = '#f5a623';
   ctx.font = `bold ${Math.min(20,14+poles)}px Segoe UI`;
   ctx.textAlign = 'center';
   ctx.fillText(Math.round(n)+' RPM', cx, cy+5);
   ctx.font = '11px Segoe UI';
-  ctx.fillStyle = '#8caba1';
+  ctx.fillStyle = '#7a8099';
   ctx.fillText(poles+' polos', cx, cy+20);
   ctx.textAlign = 'left';
 
@@ -951,15 +898,15 @@ function drawJouleBar(lossLow, lossHigh, P) {
     lossLow = il*il*R; lossHigh = ih*ih*R; P=pwr;
   }
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = canvasBg;
+  ctx.fillStyle = '#0a0c12';
   ctx.fillRect(0,0,W,H);
 
   const max = Math.max(lossLow, P);
   const bw = (W-80)/2, bh = H-50, bx1=40, bx2=40+bw+20, by=10;
 
-  [[bx1, lossLow,'#d32f2f','Baixa Tensão\n13,8 kV'],[bx2,lossHigh,'#009c7b','Alta Tensão\n500 kV']].forEach(([bx,loss,col,label])=>{
+  [[bx1, lossLow,'#ef5350','Baixa Tensão\n13,8 kV'],[bx2,lossHigh,'#69d98c','Alta Tensão\n500 kV']].forEach(([bx,loss,col,label])=>{
     const barH = Math.min((loss/max)*bh, bh);
-    ctx.fillStyle = '#1a382e';
+    ctx.fillStyle = '#1a1e28';
     ctx.fillRect(bx, by, bw, bh);
     ctx.fillStyle = col;
     ctx.fillRect(bx, by+bh-barH, bw, barH);
@@ -967,70 +914,169 @@ function drawJouleBar(lossLow, lossHigh, P) {
     ctx.font = 'bold 12px Segoe UI';
     ctx.textAlign = 'center';
     const pct = loss/P*100;
-    ctx.fillText(pct < 1 ? pct.toFixed(3)+'%' : pct.toFixed(1)+'%', bx+bw/2, by+bh-barH-8);
-    ctx.fillStyle = '#8caba1';
+    ctx.fillText(pct < 1 ? pct.toFixed(3)+'%' : pct.toFixed(1)+'%', bx+bw/2, by+bh-barH-6);
+    ctx.fillStyle = '#7a8099';
     ctx.font = '11px Segoe UI';
-    const lines = label.split('\n');
-    ctx.fillText(lines[0], bx+bw/2, by+bh+16);
-    ctx.fillText(lines[1], bx+bw/2, by+bh+30);
+    label.split('\n').forEach((line,i)=>ctx.fillText(line, bx+bw/2, by+bh+14+i*13));
   });
+  ctx.textAlign = 'left';
 }
+updateJoule();
 
 // ══════════════════════════════════════════════════
-//  CAP 5 — ANTENNA
+//  CAP 5 — ANTENNA PROPAGATION
 // ══════════════════════════════════════════════════
 let antennaPos = null;
+const TERRAIN = [];
+function buildTerrain(W) {
+  const pts = [];
+  const hills = [
+    {x:0.15, h:0.55, w:0.12},
+    {x:0.35, h:0.75, w:0.1},
+    {x:0.55, h:0.45, w:0.15},
+    {x:0.72, h:0.82, w:0.09},
+    {x:0.88, h:0.52, w:0.12}
+  ];
+  for(let x=0; x<W; x++) {
+    let h = 0.25;
+    hills.forEach(({x:hx,h:hh,w:hw})=>{
+      const d = (x/W - hx)/hw;
+      h += hh * Math.exp(-d*d*2);
+    });
+    pts.push(Math.min(h, 0.92));
+  }
+  return pts;
+}
+
 function updateAntenna() {
-  document.getElementById('freq5v').textContent = document.getElementById('freq5').value + ' MHz';
+  const f = +document.getElementById('freq5').value;
+  document.getElementById('freq5v').textContent = f + ' MHz';
   drawAntenna();
 }
+
 function placeAntenna(e) {
-  const rect = e.target.getBoundingClientRect();
-  antennaPos = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  const canvas = document.getElementById('antennaCanvas');
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  antennaPos = {
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
+  };
   drawAntenna();
 }
+
 function drawAntenna() {
   const canvas = document.getElementById('antennaCanvas');
-  if(!canvas) return;
   const ctx = canvas.getContext('2d');
   canvas.width = canvas.offsetWidth || 600;
   const W = canvas.width, H = canvas.height;
-  
-  ctx.clearRect(0,0,W,H);
-  ctx.fillStyle = canvasBg;
-  ctx.fillRect(0,0,W,H);
-  
-  // Dummy topo map
-  ctx.fillStyle = '#11261f';
-  ctx.beginPath();
-  ctx.moveTo(0,H);
-  for(let x=0; x<=W; x+=10) {
-    const y = H - 30 - Math.sin(x*0.02)*40 - Math.sin(x*0.05)*20;
-    ctx.lineTo(x, y);
-  }
-  ctx.lineTo(W,H);
-  ctx.fill();
-  
-  if(!antennaPos) {
-    ctx.fillStyle = '#8caba1';
-    ctx.textAlign = 'center';
-    ctx.font = '12px Segoe UI';
-    ctx.fillText('Clique no mapa para posicionar a antena', W/2, H/2);
-    return;
-  }
-  
+  const terrain = buildTerrain(W);
   const freq = +document.getElementById('freq5').value;
-  const range = (3500 - freq + 1000) / 10;
-  
-  ctx.strokeStyle = `rgba(255,213,0,0.5)`;
+
+  ctx.clearRect(0,0,W,H);
+
+  // Sky gradient
+  const sky = ctx.createLinearGradient(0,0,0,H);
+  sky.addColorStop(0,'#0d1220');
+  sky.addColorStop(1,'#1a2030');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0,0,W,H);
+
+  // Draw terrain
   ctx.beginPath();
-  ctx.arc(antennaPos.x, antennaPos.y, range, 0, Math.PI*2);
-  ctx.stroke();
-  
-  ctx.fillStyle = '#ffffff';
-  ctx.beginPath();
-  ctx.arc(antennaPos.x, antennaPos.y, 4, 0, Math.PI*2);
+  ctx.moveTo(0, H);
+  for(let x=0; x<W; x++) {
+    ctx.lineTo(x, H - terrain[x] * H * 0.65);
+  }
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  const tGrad = ctx.createLinearGradient(0,0,0,H);
+  tGrad.addColorStop(0,'#2d4a2a');
+  tGrad.addColorStop(0.5,'#1e3320');
+  tGrad.addColorStop(1,'#0f1a10');
+  ctx.fillStyle = tGrad;
   ctx.fill();
+
+  // Signal propagation
+  if(antennaPos) {
+    const ax = antennaPos.x, ay = antennaPos.y;
+    const groundAtAntenna = H - terrain[Math.floor(ax)] * H * 0.65;
+    const antH = groundAtAntenna - ay;
+
+    // Propagation simulation
+    const signalMap = new Float32Array(W);
+    const penetration = freq <= 1000 ? 0.85 : freq <= 2500 ? 0.6 : 0.35;
+
+    for(let x=0; x<W; x++) {
+      const dist = Math.abs(x - ax);
+      const terrainY = H - terrain[x] * H * 0.65;
+      let blocked = false;
+      const steps = Math.abs(x - ax);
+      if(steps > 0) {
+        for(let s=1; s<steps; s++) {
+          const ix = Math.floor(ax + (x-ax)*s/steps);
+          if(ix<0||ix>=W) continue;
+          const ity = H - terrain[ix]*H*0.65;
+          const expectedY = ay + (terrainY-ay)*s/steps;
+          if(ity < expectedY - 5) { blocked = true; break; }
+        }
+      }
+      const distFactor = Math.max(0, 1 - dist/(W*0.7));
+      signalMap[x] = blocked ? distFactor * penetration * 0.3 : distFactor;
+    }
+
+    // Draw signal overlay
+    for(let x=0; x<W; x++) {
+      const s = signalMap[x];
+      if(s < 0.05) continue;
+      const terrainY = H - terrain[x]*H*0.65;
+      const col = s > 0.6 ? `rgba(105,217,140,${s*0.3})` :
+                  s > 0.3 ? `rgba(245,166,35,${s*0.35})` :
+                             `rgba(239,83,80,${s*0.4})`;
+      ctx.fillStyle = col;
+      ctx.fillRect(x, 0, 1, terrainY);
+    }
+
+    // Antenna tower
+    const tY = H - terrain[Math.floor(ax)]*H*0.65;
+    ctx.strokeStyle = '#4fc3f7';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(ax, tY);
+    ctx.lineTo(ax, ay);
+    ctx.stroke();
+
+    // Signal rings
+    const numRings = 5;
+    for(let r=1; r<=numRings; r++) {
+      const radius = r * W * 0.12;
+      ctx.strokeStyle = `rgba(79,195,247,${0.15 - r*0.025})`;
+      ctx.lineWidth = 1;
+      ctx.setLineDash([4,8]);
+      ctx.beginPath();
+      ctx.arc(ax, ay, radius, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    ctx.fillStyle = '#4fc3f7';
+    ctx.beginPath();
+    ctx.arc(ax, ay, 6, 0, Math.PI*2);
+    ctx.fill();
+
+    // Frequency label
+    ctx.fillStyle = '#4fc3f7';
+    ctx.font = 'bold 11px Segoe UI';
+    ctx.fillText(freq+' MHz', ax+10, ay-8);
+  } else {
+    ctx.fillStyle = 'rgba(79,195,247,0.5)';
+    ctx.font = '13px Segoe UI';
+    ctx.textAlign = 'center';
+    ctx.fillText('Clique para posicionar a antena', W/2, H/2);
+    ctx.textAlign = 'left';
+  }
+
   // City labels
   const cityLabels = [
     {x:0.15, label:'Nereu Ramos'},
@@ -1049,6 +1095,7 @@ function drawAntenna() {
   });
   ctx.textAlign = 'left';
 }
+drawAntenna();
 </script>
 </body>
 </html>
