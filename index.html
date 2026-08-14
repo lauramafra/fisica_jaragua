@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energia em Jaraguá — Simulador Interativo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img class="sesi-logo" src="logo.png" >
+    <div class="header-title">
+      <h1>Energia em Jaraguá do Sul</h1>
+      <p>Simulador Interativo de Física em comemoração aos 150 anos da cidade </p>
+      <p>por Laura Mafra, Natalia Cesconetto e Miguel Yudi.</p>
+    </div>
+  </div>
+  <div class="header-badges">
+    <div class="badge"><span>5</span> Capítulos</div>
+    <div class="badge"><span>~100</span> anos de história</div>
+    <div class="badge"><span>5</span> Simulações</div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Jaraguá do Sul · SC · Brasil</div>
+  <h2>A física que <em>aconteceu aqui</em></h2>
+  <p>Viaje pelos momentos que transformaram a cidade — e descubra os fenômenos elétricos por trás de cada época. Da primeira lâmpada aos 5G, a física sempre esteve aqui.</p>
+</div>
+
+<nav class="timeline-nav">
+  <button class="tnav-btn active" onclick="showChapter(0)">① 1920 — A Primeira Luz</button>
+  <button class="tnav-btn" onclick="showChapter(1)">② 1950 — A Fábrica Acende</button>
+  <button class="tnav-btn" onclick="showChapter(2)">③ 1961 — A WEG Nasce</button>
+  <button class="tnav-btn" onclick="showChapter(3)">④ 1980 — Energia de Longe</button>
+  <button class="tnav-btn" onclick="showChapter(4)">⑤ Hoje — Cidade Conectada</button>
+</nav>
+
+<section class="chapter active" id="ch0">
+  <div class="chapter-header">
+    <div class="chapter-num">1</div>
+    <div class="chapter-meta">
+      <div class="chapter-era">1920 – 1940</div>
+      <h3>A Primeira Luz</h3>
+      <p>Colonos alemães constroem a primeira usina local de Jaraguá do Sul. Serras e moinhos precisavam de energia. Um gerador simples de corrente contínua acendeu as primeiras lâmpadas da cidade.</p>
+      <div class="chapter-tags"><span class="tag">Lei de Faraday</span><span class="tag">Gerador CC</span><span class="tag">Corrente Induzida</span></div>
+    </div>
+  </div>
+  <div class="sim-card"><div class="sim-header"><div class="sim-dot"></div>Simulação — Gerador de Corrente Contínua</div><div class="sim-body">
+    <div class="control-row"><div class="control-label"><strong>Velocidade da Manivela</strong>RPM do gerador</div><input type="range" id="rpm1" min="0" max="3000" value="0" oninput="updateFaraday()"><div class="val-display" id="rpm1v">0 RPM</div></div>
+    <canvas id="c1" height="200"></canvas>
+    <div class="formula-pill"><span>Corrente induzida:</span><span class="eq" id="emf_val">ε = 0.00 V</span><span style="color:var(--muted)">|</span><span class="eq" id="cur_val">I = 0.00 A</span></div>
+    <div class="connection-box"><div class="conn-label">Conexão Atual</div>A <strong>Usina Hidrelétrica do Salto Weissbach</strong>, construída nos anos 1930 às margens do Rio Itajaí-Mirim, usa exatamente esse princípio para gerar energia que hoje abastece parte da região.</div>
+  </div></div>
+</section>
+
+<section class="chapter" id="ch1"><div class="chapter-header"><div class="chapter-num">2</div><div class="chapter-meta"><div class="chapter-era">1950 – 1960</div><h3>A Fábrica Acende</h3><p>Chegam as primeiras indústrias têxteis e metalúrgicas. Elas precisam de motores mais potentes. O motor de indução trifásico, com suas três correntes defasadas criando um campo magnético girante, vira o coração das fábricas.</p><div class="chapter-tags"><span class="tag">Campo Girante Trifásico</span><span class="tag">Animação das 3 Fases</span><span class="tag">Industrialização</span></div></div></div><div class="sim-card"><div class="sim-header"><div class="sim-dot"></div>Simulação — Campo Magnético Rotativo Trifásico</div><div class="sim-body"><div class="control-row"><div class="control-label"><strong>Frequência</strong>Hz da rede</div><input type="range" id="freq2" min="10" max="60" value="60" oninput="update3phase()"><div class="val-display" id="freq2v">60 Hz</div></div><canvas id="c2" height="260"></canvas><div class="formula-pill"><span>Defasagem:</span><span class="eq">120°</span><span style="color:var(--muted)">|</span><span>Campo resultante:</span><span class="eq" id="field_mag">constante</span></div><div class="connection-box"><div class="conn-label">Conexão Atual</div>A <strong>WEG</strong> produz hoje mais de 21 milhões de motores elétricos por ano — todos baseados nesse mesmo princípio do campo girante trifásico descoberto por Tesla em 1888.</div></div></div></section>
+
+<section class="chapter" id="ch2"><div class="chapter-header"><div class="chapter-num">3</div><div class="chapter-meta"><div class="chapter-era">1961</div><h3>Werner, Eggon e Geraldo</h3><p>Três homens fundam a WEG em Jaraguá do Sul. Uma bobina simples se torna um motor comercial. O segredo está na relação entre frequência, número de polos e rotação.</p><div class="chapter-tags"><span class="tag">n = 120f / p</span><span class="tag">Polos e Rotação</span><span class="tag">Fundação da WEG</span></div></div></div><div class="sim-card"><div class="sim-header"><div class="sim-dot"></div>Simulação — Motor Interativo WEG</div><div class="sim-body"><div class="control-row"><div class="control-label"><strong>Nº de Polos</strong>par de polos</div><input type="range" id="poles3" min="2" max="12" step="2" value="4" oninput="updateMotor()"><div class="val-display" id="poles3v">4 polos</div></div><div class="control-row"><div class="control-label"><strong>Frequência</strong>Hz da rede</div><input type="range" id="freq3" min="50" max="60" step="10" value="60" oninput="updateMotor()"><div class="val-display" id="freq3v">60 Hz</div></div><canvas id="c3" height="200"></canvas><div class="motor-readout"><div class="readout-cell"><div class="rv" id="m_rpm">1800</div><div class="rl">RPM Síncrona</div></div><div class="readout-cell"><div class="rv" id="m_polos">4</div><div class="rl">Polos</div></div><div class="readout-cell"><div class="rv" id="m_freq">60 Hz</div><div class="rl">Frequência</div></div></div><div class="formula-pill" style="margin-top:14px"><span class="eq">n = 120 × f / p</span><span style="color:var(--muted)">→</span><span class="eq" id="m_calc">120 × 60 / 4 = 1800 RPM</span></div><div class="connection-box"><div class="conn-label">Conexão Atual</div>Os motores WEG de <strong>2 polos</strong> giram a 3600 RPM e são usados em compressores e ventiladores industriais. Os de <strong>8 polos</strong> giram a 900 RPM para aplicações que exigem torque elevado, como britadores.</div></div></div></section>
+
+<section class="chapter" id="ch3"><div class="chapter-header"><div class="chapter-num">4</div><div class="chapter-meta"><div class="chapter-era">1980 – 1990</div><h3>A Energia Vem de Longe</h3><p>Jaraguá passa a receber energia de usinas distantes. O transformador se torna peça-chave: transmitir em alta tensão reduz drasticamente as perdas Joule nas linhas.</p><div class="chapter-tags"><span class="tag">Transformador</span><span class="tag">P = I²R</span><span class="tag">Sistema Interligado</span></div></div></div><div class="sim-card"><div class="sim-header"><div class="sim-dot"></div>Simulação — Perdas Joule: Baixa vs. Alta Tensão</div><div class="sim-body"><div class="control-row"><div class="control-label"><strong>Potência transmitida</strong>MW na linha</div><input type="range" id="pow4" min="1" max="100" value="50" oninput="updateJoule()"><div class="val-display" id="pow4v">50 MW</div></div><div class="control-row"><div class="control-label"><strong>Resistência da linha</strong>Ω total</div><input type="range" id="res4" min="1" max="50" value="10" oninput="updateJoule()"><div class="val-display" id="res4v">10 Ω</div></div><div class="compare-grid" id="joule-compare"><div class="compare-card"><h4>Baixa Tensão (13,8 kV)</h4><div class="big bad" id="loss_low">—</div><div class="sub" id="loss_low_pct">— % de perda</div></div><div class="compare-card"><h4>Alta Tensão (500 kV)</h4><div class="big good" id="loss_high">—</div><div class="sub" id="loss_high_pct">— % de perda</div></div></div><canvas id="c4" height="160"></canvas><div class="formula-pill"><span class="eq">P_perda = I² × R</span><span style="color:var(--muted)">e</span><span class="eq">I = P / V</span></div><div class="connection-box"><div class="conn-label">Conexão Atual</div>A subestação de Jaraguá do Sul recebe energia a <strong>138 kV</strong> do sistema interligado nacional e reduz para distribuição local. As linhas de 500 kV que cruzam Santa Catarina perdem menos de <strong>2%</strong> da energia transmitida.</div></div></div></section>
+
+<section class="chapter" id="ch4"><div class="chapter-header"><div class="chapter-num">5</div><div class="chapter-meta"><div class="chapter-era">Hoje</div><h3>A Cidade Conectada</h3><p>Antenas 5G, fibra óptica e carros elétricos. O sinal eletromagnético se propaga pelos vales e morros de Jaraguá — o relevo cria zonas de sombra onde o sinal não chega.</p><div class="chapter-tags"><span class="tag">Propagação de Ondas EM</span><span class="tag">Mapa Topográfico</span><span class="tag">Jaraguá Digital</span></div></div></div><div class="sim-card"><div class="sim-header"><div class="sim-dot"></div>Simulação — Antena e Propagação no Relevo</div><div class="sim-body"><p style="font-size:.82rem;color:var(--muted);margin-bottom:14px">Clique no mapa topográfico para posicionar uma antena e veja como o sinal se propaga pelos morros de Jaraguá.</p><div class="control-row"><div class="control-label"><strong>Frequência da antena</strong></div><input type="range" id="freq5" min="700" max="3500" step="100" value="700" oninput="updateAntenna()"><div class="val-display" id="freq5v">700 MHz</div></div><canvas id="antennaCanvas" height="280" onclick="placeAntenna(event)"></canvas><div class="signal-legend"><div class="leg-item"><div class="leg-dot" style="background:var(--green)"></div>Sinal forte</div><div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div>Sinal médio</div><div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>Zona de sombra</div><div class="leg-item"><div class="leg-dot" style="background:var(--accent2)"></div>Antena</div></div><div class="connection-box"><div class="conn-label">Conexão Atual</div>As frequências de <strong>700 MHz</strong> penetram melhor os vales de Jaraguá, enquanto as de <strong>3,5 GHz</strong> oferecem maior velocidade mas sofrem mais com obstáculos. O Morro do Boa Vista (958 m) cria uma das maiores zonas de sombra da cidade.</div></div></div></section>
+
+<footer><strong>ENERGIA EM JARAGUÁ</strong> · Simulador de Física · 150 anos de Jaraguá do Sul · 2026</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
